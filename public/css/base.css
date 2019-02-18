@@ -1,0 +1,21 @@
+#header #search {
+    text-align: center;
+    line-height: 40px;
+    font-size: 40px;
+}
+
+#header #search::placeholder {
+    color: white;
+}
+
+#header #search:focus {
+    color: #b39ddb;
+}
+
+#header #searchIcon {
+    font-size: 50px;
+}
+
+#header #search:focus + label i, #header #search:focus ~ .material-icons {
+    color: #b39ddb !important;
+}
