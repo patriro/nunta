@@ -1,0 +1,17 @@
+#containerWedding {
+    height: 100%;
+}
+
+#containerWedding .row {
+    height: 90%;
+}
+
+#containerWedding .row #weddingRoom {
+    height: 100%;
+}
+
+#containerWedding .row #weddingRoom canvas{
+    width: 100%;
+    height: 100%;
+}
+

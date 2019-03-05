@@ -1,20 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}Patrice & Ana-Maria{% endblock %}
 
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/home/home.css') }}">{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+     {% include 'includes/header.html.twig' %}
+     <h4 class="center">Bine ati venit la nunta noastra</h4>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="container" id="containerWedding">
+        <div class="row">
+            <div class="col l3 m2 s12">
+                <h2>Lista de mese</h2>
+            </div>
+            <div class="col l9 m10 s12" id="weddingRoom">
+                <canvas style="border:black 1px solid;"></canvas>
+            </div>
+        </div>
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/AppController.php'|file_link(0) }}">src/Controller/AppController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/app/index.html.twig'|file_link(0) }}">templates/app/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
