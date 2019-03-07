@@ -41,6 +41,11 @@ class Guest
      */
     private $presence;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Table", inversedBy="guests")
+     */
+    private $weddingTable;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +107,18 @@ class Guest
     public function setPresence(bool $presence): self
     {
         $this->presence = $presence;
+
+        return $this;
+    }
+
+    public function getWeddingTable(): ?Table
+    {
+        return $this->weddingTable;
+    }
+
+    public function setWeddingTable(?Table $weddingTable): self
+    {
+        $this->weddingTable = $weddingTable;
 
         return $this;
     }
