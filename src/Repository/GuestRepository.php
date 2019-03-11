@@ -19,6 +19,16 @@ class GuestRepository extends ServiceEntityRepository
         parent::__construct($registry, Guest::class);
     }
 
+    public function removeAll()
+    {
+        $queryBuilder = $this->createQueryBuilder('g');
+        $queryBuilder->delete(Guest::class, 'g');
+        $query = $queryBuilder->getQuery();
+
+        $query->getDQL();
+        $query->execute();
+    }
+
     // /**
     //  * @return Guest[] Returns an array of Guest objects
     //  */
