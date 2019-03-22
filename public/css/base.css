@@ -10,15 +10,20 @@ html, body {
 }
 
 #header #search::placeholder {
-    color: white;
+    color: white !important;
+}
+
+#header #search {
+    color: white !important;
 }
 
 #header #search:focus {
-    color: #b39ddb;
+    color: #b39ddb !important;
 }
 
 #header #searchIcon {
     font-size: 50px;
+    line-height: 40px;
 }
 
 #header #search:focus + label i, #header #search:focus ~ .material-icons {
