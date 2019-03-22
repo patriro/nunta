@@ -29,32 +29,64 @@ class GuestRepository extends ServiceEntityRepository
         $query->execute();
     }
 
-    // /**
-    //  * @return Guest[] Returns an array of Guest objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Guest[] Returns an array of Guest objects
+     */
+    public function findBySearchValue($value)
     {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('g.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $namesToSearch = explode(' ', $value);
+        $qb = $this->createQueryBuilder('g');
+        $guests = [];
 
-    /*
-    public function findOneBySomeField($value): ?Guest
-    {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
+        foreach ($namesToSearch as $key => $value) {
+            $guestsDB = $qb->andWhere('g.lastName LIKE :val')
+            ->orWhere('g.firstName LIKE :val')
+            ->setParameter('val', '%' . $value . '%')
+            ->orderBy('g.lastName', 'ASC')
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
+
+            $guests = array_merge($guests, $guestsDB);
+        }
+
+        $results = $this->sortGuests($guests, $namesToSearch);
+        $results = $this->removeDuplicateGuest($results);
+
+        return $results;
     }
-    */
+
+    private function sortGuests($guests, $namesToSearch)
+    {
+        if (count($namesToSearch) > 2) {
+            return $guests;
+        }
+
+        $response = [];
+
+        foreach ($guests as $keyResponse => $guest) {
+            $concatNames = $guest->getLastName() . ' ' . $guest->getFirstName();
+
+            $search = $namesToSearch[0] . '.*' . $namesToSearch[1] . '|' . $namesToSearch[1] . '.*' .$namesToSearch[0];
+
+            if(preg_match("/{$search}/i", $concatNames)) {
+                $response[] = $guest;
+            }
+        }
+
+        return $response;
+    }
+
+    private function removeDuplicateGuest($guests)
+    {
+        $guestUnique = [];
+
+        foreach ($guests as $key => $guest) {
+            if (!array_key_exists($guest->getId(), $guestUnique)) {
+                $guestUnique[$guest->getId()] = $guest;
+            }
+
+        }
+
+        return array_values($guestUnique);
+    }
 }
