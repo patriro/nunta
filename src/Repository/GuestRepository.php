@@ -49,6 +49,10 @@ class GuestRepository extends ServiceEntityRepository
             $guests = array_merge($guests, $guestsDB);
         }
 
+        if (empty($guests)) {
+            return [];
+        }
+
         $results = $this->sortGuests($guests, $namesToSearch);
         $results = $this->removeDuplicateGuest($results);
 
@@ -63,10 +67,18 @@ class GuestRepository extends ServiceEntityRepository
 
         $response = [];
 
+
+        $firstWord = $namesToSearch[0];
+        $secondWord = '';
+
+        if (isset($namesToSearch[1])) {
+            $secondWord = $namesToSearch[1];
+        }
+
         foreach ($guests as $keyResponse => $guest) {
             $concatNames = $guest->getLastName() . ' ' . $guest->getFirstName();
 
-            $search = $namesToSearch[0] . '.*' . $namesToSearch[1] . '|' . $namesToSearch[1] . '.*' .$namesToSearch[0];
+            $search = $firstWord . '.*' . $secondWord . '|' . $secondWord . '.*' . $firstWord;
 
             if(preg_match("/{$search}/i", $concatNames)) {
                 $response[] = $guest;
