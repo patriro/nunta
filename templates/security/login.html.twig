@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conectare !{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/login/login.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+<div class="valign-wrapper">
+    <div class="valign">
+
+        <div class="row">
+            <div class="col s4 m4 l4 xl4 offset-s4 offset-m4 offset-l4 offset-xl4 z-depth-4 card-panel">
+                <form method="post">
+
+                    <div class="row">
+                        <div class="input-field col s12 l12 center">
+                            <img src="{{ asset('img/p&a.jpg') }}" alt="loginImage" class="responsive-img circle loginImage">
+                        </div>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="large material-icons prefix">perm_identity</i>
+                        <label for="inputUsername" class="sr-only">Username</label>
+                        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="large material-icons prefix">vpn_key</i>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="input-field col s12 m12 l12  login-text">
+                            <label>
+                                <input type="checkbox" name="_remember_me"/>
+                                <span>Remember me</span>
+                            </label>
+                        </div>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+
+                    <div class="row">
+                        <div class="input-field center">
+                            <button class="btn waves-effect waves-light" type="submit"
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
