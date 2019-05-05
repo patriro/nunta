@@ -5,4 +5,21 @@
 {% block body %}
     {% include 'includes/headerAdmin.html.twig' %}
 
+
+
+<div class="row">
+   <div class="input-field col s6 m6 l6 xl6">
+       <select searchable='List of options' id="listPeople" multiple>
+            {% for guest in guests %}
+                <option value="{{ guest.id }}">{{ guest.lastName }} {{ guest.firstName }}</option>
+            {% endfor %}
+       </select>
+       <button id="selectPeople">select</button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/admin/admin.js') }}"></script>
 {% endblock %}
