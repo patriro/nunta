@@ -102,6 +102,18 @@ class Table
         return $this;
     }
 
+    public function addGuests($guests): self
+    {
+        foreach ($guests as $guest) {
+            if (!$this->guests->contains($guest)) {
+                $this->guests[] = $guest;
+                $guest->setWeddingTable($this);
+            }
+        }
+
+        return $this;
+    }
+
     public function removeGuest(Guest $guest): self
     {
         if ($this->guests->contains($guest)) {
