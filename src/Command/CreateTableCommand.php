@@ -43,5 +43,7 @@ class CreateTableCommand extends Command
         }
 
         $this->em->flush();
+
+        $output->writeln('Tables successfully created!');
     }
 }
