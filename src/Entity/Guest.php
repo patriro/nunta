@@ -42,6 +42,11 @@ class Guest
     private $presence;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $placed;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Table", inversedBy="guests")
      */
     private $weddingTable;
@@ -107,6 +112,18 @@ class Guest
     public function setPresence(bool $presence): self
     {
         $this->presence = $presence;
+
+        return $this;
+    }
+
+    public function getPlaced(): ?bool
+    {
+        return $this->placed;
+    }
+
+    public function setPlaced(bool $placed): self
+    {
+        $this->placed = $placed;
 
         return $this;
     }
