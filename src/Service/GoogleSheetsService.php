@@ -74,23 +74,23 @@ class GoogleSheetsService
 
     private function getHeadersAndSheets(): array
     {
-        // 1 Numéro
-        // 2 Nom de Famille
-        // 3 Prénom
-        // 4 Enfant sous 7 ans !!!
-        // 5 Présence
+
+        // 1 Nom de Famille
+        // 2 Prénom
+        // 3 Enfant sous 7 ans !!!
+        // 4 Présence
 
         return [
-            'burdaSheetsRange'          => 'Familia Burda!A5:E',
-            'OprisiuSheetsRange'        => 'Familia Oprisiu!A5:E',
-            'burdaFriendsSheetsRange'   => 'Prietenii - familistii Burda!A5:E',
-            'olariSheetsRange'          => 'Familia Olari!A5:E',
-            'purtanSheetsRange'         => 'Familia Purtan!A5:E',
-            'closeOlariSheetsRange'     => 'Familia apropiata Olari!A5:E',
-            'olariFriendsSheetsRange'   => 'Prietenii - familistii Olari!A5:E',
-            'ComitetSheetsRange'        => 'Comitet!A5:E',
-            'FrenchSheetsRange'         => 'Francezi!A5:E',
-            'teensSheetsRange'          => 'Tinerii!A5:E',
+            'burdaSheetsRange'          => 'Familia Burda!B5:E',
+            'oprisiuSheetsRange'        => 'Familia Oprisiu!B5:E',
+            'burdaFriendsSheetsRange'   => 'Prietenii - familistii Burda!B5:E',
+            'olariSheetsRange'          => 'Familia Olari!B5:E',
+            'purtanSheetsRange'         => 'Familia Purtan!B5:E',
+            'closeOlariSheetsRange'     => 'Familia apropiata Olari!B5:E',
+            'olariFriendsSheetsRange'   => 'Prietenii - familistii Olari!B5:E',
+            'comitetSheetsRange'        => 'Comitet!B5:E',
+            'frenchSheetsRange'         => 'Francezi!B5:E',
+            'teensSheetsRange'          => 'Tinerii!B5:E',
         ];
     }
 
@@ -111,7 +111,7 @@ class GoogleSheetsService
         foreach ($datas as $key => $values) {
             foreach ($values as $value) {
                 if (strpos($value, '?') !== false) {
-                    array_splice($datas, $key);
+                    unset($datas[$key]);
                 }
             }
         }
@@ -160,10 +160,10 @@ class GoogleSheetsService
 
     private function updateGuest(Guest $guest, $guestFromServer)
     {
-        $guest->setLastName($guestFromServer[1]);
-        $guest->setFirstName($guestFromServer[2]);
-        $guest->setChildUnder7($this->returnTrueOrFalse($guestFromServer[3]));
-        $guest->setPresence($this->returnTrueOrFalse($guestFromServer[4]));
+        $guest->setLastName($guestFromServer[0]);
+        $guest->setFirstName($guestFromServer[1]);
+        $guest->setChildUnder7($this->returnTrueOrFalse($guestFromServer[2]));
+        $guest->setPresence($this->returnTrueOrFalse($guestFromServer[3]));
 
         $this->em->persist($guest);
     }
@@ -172,11 +172,10 @@ class GoogleSheetsService
     {
         $guest = new Guest();
 
-        $guest->setNumber((int) $guestFromServer[0]);
-        $guest->setLastName($guestFromServer[1]);
-        $guest->setFirstName($guestFromServer[2]);
-        $guest->setChildUnder7($this->returnTrueOrFalse($guestFromServer[3]));
-        $guest->setPresence($this->returnTrueOrFalse($guestFromServer[4]));
+        $guest->setLastName($guestFromServer[0]);
+        $guest->setFirstName($guestFromServer[1]);
+        $guest->setChildUnder7($this->returnTrueOrFalse($guestFromServer[2]));
+        $guest->setPresence($this->returnTrueOrFalse($guestFromServer[3]));
 
         $this->em->persist($guest);
     }
