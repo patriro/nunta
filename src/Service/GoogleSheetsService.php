@@ -65,6 +65,7 @@ class GoogleSheetsService
         foreach ($allHeaders as $sheet) {
             $valueRange     = $googleSheetsService->spreadsheets_values->get(self::SHEET_ID, $sheet);
             $datas          = $this->getDatasWihtoutLinesSpaces($valueRange->getValues());
+            $datas          = $this->ignoreAllQuestionMarkAndNoCommingPeople($datas);
             $allDatas = array_merge($allDatas, $datas);
         }
 
@@ -99,6 +100,19 @@ class GoogleSheetsService
             if (empty($value)) {
                 array_splice($datas, $key);
                 continue;
+            }
+        }
+
+        return $datas;
+    }
+
+    private function ignoreAllQuestionMarkAndNoCommingPeople($datas)
+    {
+        foreach ($datas as $key => $values) {
+            foreach ($values as $value) {
+                if (strpos($value, '?') !== false) {
+                    array_splice($datas, $key);
+                }
             }
         }
 

@@ -18,9 +18,8 @@ class AppController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(GoogleSheetsService $googleSheetsService)
+    public function index()
     {
-        // $googleSheetsService->saveAllGuestsFromGoogle();
 
         return $this->render('app/index.html.twig', [
             'controller_name' => 'AppController',

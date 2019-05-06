@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Repository\GuestRepository;
 use App\Repository\TableRepository;
+use App\Service\GoogleSheetsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -22,5 +24,15 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig', [
             'guests' => $allGuests
         ]);
+    }
+
+    /**
+     * @Route("/updateGuests", name="update_guests")
+     */
+    public function updateGuestsList(GoogleSheetsService $gss)
+    {
+        $gss->saveAllGuestsFromGoogle();
+
+        return new JsonResponse(['status' => 'done']);
     }
 }

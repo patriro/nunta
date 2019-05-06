@@ -42,7 +42,7 @@ class Guest
     private $presence;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $placed;
 

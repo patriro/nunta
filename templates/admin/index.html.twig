@@ -2,10 +2,24 @@
 
 {% block title %}Admin{% endblock %}
 
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/admin/index.css') }}">{% endblock %}
+
 {% block body %}
     {% include 'includes/headerAdmin.html.twig' %}
 
+<div class="row rowAdmin center">
+    <a class="waves-effect btn-small" onclick="reloadGuests(false)">
+        <i class="material-icons left">autorenew</i>
+        Actualizeaza lista !
+        <i class="material-icons right">autorenew</i>
+    </a>
 
+    <a class="waves-effect red darken-3 btn-small" onclick="reloadGuests(true)">
+        <i class="material-icons left">delete</i>
+        Sterge si actualizeaza lista !
+        <i class="material-icons right">autorenew</i>
+    </a>
+</div>
 
 <div class="row">
    <div class="input-field col s6 m6 l6 xl6">

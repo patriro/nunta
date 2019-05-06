@@ -10,4 +10,19 @@ $(document).ready(function(){
         console.log(instance.getSelectedValues());
         console.log($("#listPeople option:selected").text());
     });
+
 });
+
+function reloadGuests(e) {
+    $.ajax({
+        type: "GET",
+        url: '/nuntadmin/updateGuests',
+        data: 'delete=' + e,
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(errorThrown);
+        },
+        success: function(response) {
+           console.log(response);
+        }
+    });
+}
