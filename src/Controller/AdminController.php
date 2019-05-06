@@ -7,6 +7,7 @@ use App\Repository\TableRepository;
 use App\Service\GoogleSheetsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -29,9 +30,11 @@ class AdminController extends AbstractController
     /**
      * @Route("/updateGuests", name="update_guests")
      */
-    public function updateGuestsList(GoogleSheetsService $gss)
+    public function updateGuestsList(Request $request, GoogleSheetsService $gss)
     {
-        $gss->saveAllGuestsFromGoogle();
+        $delete = $request->get('delete', false);
+
+        $gss->saveAllGuestsFromGoogle($delete);
 
         return new JsonResponse(['status' => 'done']);
     }
