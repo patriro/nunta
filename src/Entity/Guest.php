@@ -17,11 +17,6 @@ class Guest
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $number;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $lastName;
@@ -54,18 +49,6 @@ class Guest
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNumber(): ?int
-    {
-        return $this->number;
-    }
-
-    public function setNumber(int $number): self
-    {
-        $this->number = $number;
-
-        return $this;
     }
 
     public function getLastName(): ?string
