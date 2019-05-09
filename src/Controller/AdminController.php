@@ -20,7 +20,8 @@ class AdminController extends AbstractController
      */
     public function index(GuestRepository $guestRepo, TableRepository $tableRepo)
     {
-        $allGuests = $guestRepo->findAll();
+        $allGuests = $guestRepo->findby(['placed' => false]);
+        $allTables = $tableRepo->findAll();
 
         return $this->render('admin/index.html.twig', [
             'guests' => $allGuests
