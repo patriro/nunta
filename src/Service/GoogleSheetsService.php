@@ -141,7 +141,7 @@ class GoogleSheetsService
 
         foreach ($allGuests as $guest) {
             if ($this->checkIfGuestFromServerIsInBDD($guestFromServer, $guest)) {
-                $this->updateGuest($guest, $guestFromServer);
+                $this->saveGuest($guest, $guestFromServer);
                 return;
             }
         }
@@ -151,31 +151,29 @@ class GoogleSheetsService
 
     private function checkIfGuestFromServerIsInBDD($guestFromServer, $guest)
     {
-        if ($guest->getLastName() === $guestFromServer[1] && $guest->getFirstName() === $guestFromServer[2]) {
+        if ($guest->getLastName() == $guestFromServer[0] && $guest->getFirstName() == $guestFromServer[1]) {
             return true;
         }
 
         return false;
     }
 
-    private function updateGuest(Guest $guest, $guestFromServer)
-    {
-        $guest->setLastName($guestFromServer[0]);
-        $guest->setFirstName($guestFromServer[1]);
-        $guest->setChildUnder7($this->returnTrueOrFalse($guestFromServer[2]));
-        $guest->setPresence($this->returnTrueOrFalse($guestFromServer[3]));
-
-        $this->em->persist($guest);
-    }
-
     private function createGuest($guestFromServer)
     {
         $guest = new Guest();
+        $this->saveGuest($guest, $guestFromServer);
+    }
 
+    private function saveGuest(Guest $guest, $guestFromServer)
+    {
         $guest->setLastName($guestFromServer[0]);
         $guest->setFirstName($guestFromServer[1]);
         $guest->setChildUnder7($this->returnTrueOrFalse($guestFromServer[2]));
         $guest->setPresence($this->returnTrueOrFalse($guestFromServer[3]));
+
+        if ($guest->getPlaced() !== true) {
+            $guest->setPlaced(false);
+        }
 
         $this->em->persist($guest);
     }
