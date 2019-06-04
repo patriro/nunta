@@ -66,6 +66,7 @@ class GoogleSheetsService
             $valueRange     = $googleSheetsService->spreadsheets_values->get(self::SHEET_ID, $sheet);
             $datas          = $this->getDatasWihtoutLinesSpaces($valueRange->getValues());
             $datas          = $this->ignoreAllQuestionMarkAndNoCommingPeople($datas);
+            $datas          = $this->ignoreAllQuestionMarkAndNoCommingPeople($datas);
             $allDatas = array_merge($allDatas, $datas);
         }
 
@@ -141,6 +142,7 @@ class GoogleSheetsService
 
         foreach ($allGuests as $guest) {
             if ($this->checkIfGuestFromServerIsInBDD($guestFromServer, $guest)) {
+
                 $this->saveGuest($guest, $guestFromServer);
                 return;
             }
