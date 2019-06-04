@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var elems = document.querySelector('select');
+    var elems = document.querySelectorAll('select');
     var instance = M.FormSelect.init(elems, {});
 
     $('#selectPeople').on('click', function(){
