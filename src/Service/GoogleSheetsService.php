@@ -48,7 +48,7 @@ class GoogleSheetsService
             throw new Exception("Google Sheet API isn\'t available");
         }
 
-        if ($removingBefore) {
+        if ($removingBefore === true) {
             $this->guestRepo->removeAll();
         }
 
