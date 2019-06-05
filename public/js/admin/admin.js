@@ -22,7 +22,13 @@ function reloadGuests(e) {
            console.log(errorThrown);
         },
         success: function(response) {
-           console.log(response);
+           if (response.response === true) {
+               reloadingPage();
+           }
         }
     });
-}
+};
+
+function reloadingPage() {
+    document.location.reload(true);
+};
