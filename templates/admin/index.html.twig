@@ -21,15 +21,63 @@
     </a>
 </div>
 
+<div class="row container">
+    <hr class="hrAdmin center">
+</div>
+
 <div class="row">
-   <div class="input-field col s6 m6 l6 xl6">
-       <select searchable='List of options' id="listPeople" multiple>
+   <div class="input-field col s6 m4 l4 xl4 offset-xl2 offset-l2 offset-m2">
+       <select searchable='Lista de invitati' id="listPeople" multiple>
             {% for guest in guests %}
                 <option value="{{ guest.id }}">{{ guest.lastName }} {{ guest.firstName }}</option>
             {% endfor %}
        </select>
        <button id="selectPeople">select</button>
     </div>
+
+   <div class="input-field col s6 m4 l4 xl4">
+       <select searchable='Lista de mese' id="listTables">
+           <option value="" disabled selected>Alege Masa</option>
+            {% for table in tables %}
+                <option value="{{ table.id }}">Masa n° : {{ table.number }} (cu {{ table.guests|length }} persoane)</option>
+            {% endfor %}
+       </select>
+       <button id="selectTable">select</button>
+    </div>
+</div>
+
+<div class="row container">
+    <hr class="hrAdmin center">
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+        {% for key, tableWithGuests in tablesWithGuests %}
+            <li class="tab col s1">
+                <a href="#m{{key}}"> Masa {{ key }}
+                    <span class="iconsMese">
+                        <i class="material-icons">delete</i>
+                    </span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    </div>
+    {% for key, tableWithGuests in tablesWithGuests %}
+
+            <ul id="m{{ key }}" class="collection">
+            {% for tableWithGuest in tableWithGuests %}
+                <li href="#!" class="collection-item">
+                    {{ tableWithGuest.firstName }}
+                    {{ tableWithGuest.lastName }}
+                    <span class="right">
+                        <i class="material-icons">delete</i>
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
 </div>
 
 {% endblock %}

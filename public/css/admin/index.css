@@ -1,3 +1,40 @@
 .rowAdmin {
     margin-top: 20px;
 }
+
+.titleMese {
+}
+
+.tabs .tab a{
+    color: white;
+    background-color: #d1c4e9;
+} /*Black color to the text*/
+
+.tabs .tab a:hover {
+    color: white;
+    background-color: #b39ddb;
+} /*Text color on hover*/
+
+.tabs .tab a.active {
+    color: white;
+    background-color: #b39ddb;
+
+} /*Background and text color when a tab is active*/
+
+.tabs .tab a:focus.active {
+  color: white;
+  /*Custom Text Color While Active*/
+  background-color: #b39ddb;
+  /*Custom Background Color While Active*/
+}
+
+.tabs .indicator {
+    background-color: #673ab7;
+} /*Color of underline*/
+
+.iconsMese {
+    position: relative;
+    width: 5px;
+    top: 5px;
+    color: #7e57c2;
+}

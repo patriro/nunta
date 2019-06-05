@@ -1,6 +1,12 @@
 $(document).ready(function(){
-    var elems = document.querySelectorAll('select');
-    var instance = M.FormSelect.init(elems, {});
+    var elems           = document.querySelectorAll('select');
+    var elemsTabs       = document.querySelectorAll('.tabs');
+    var instance        = M.FormSelect.init(elems, {});
+
+    if (elemsTabs[0].childElementCount > 0) {
+        var instanceTabs    = M.Tabs.init(elemsTabs, {});
+    }
+
 
     $('#selectPeople').on('click', function(){
         console.log(instance.getSelectedValues());
