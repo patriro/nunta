@@ -101,4 +101,19 @@ class GuestRepository extends ServiceEntityRepository
 
         return array_values($guestUnique);
     }
+
+    public function findGuestsbelongingToTables()
+    {
+        // select g.last_name, g.first_name, g.wedding_table_id from guest as g where g.wedding_table_id is not null order by g.wedding_table_id;
+        $qb = $this->createQueryBuilder('g');
+
+        $return = $qb
+            ->select('g.id as idGuest, g.lastName, g.firstName, w.id as idTable')
+            ->join('g.weddingTable', 'w', 'WITH', $qb->expr()->eq('g.weddingTable', 'w.id'))
+            ->orderBy('w.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return $return;
+    }
 }
