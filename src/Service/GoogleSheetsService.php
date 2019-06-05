@@ -172,11 +172,6 @@ class GoogleSheetsService
         $guest->setFirstName($guestFromServer[1]);
         $guest->setChildUnder7($this->returnTrueOrFalse($guestFromServer[2]));
         $guest->setPresence($this->returnTrueOrFalse($guestFromServer[3]));
-
-        if ($guest->getPlaced() !== true) {
-            $guest->setPlaced(false);
-        }
-
         $this->em->persist($guest);
     }
 
