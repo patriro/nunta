@@ -49,12 +49,37 @@ class AdminController extends AbstractController
     /**
      * @Route("/assignGuestsToTables", name="assign_guests")
      */
-    public function assignGuestsList(Request $request, GuestTableService $guestTableService)
+    public function assignGuestsToTables(Request $request, GuestTableService $guestTableService)
     {
         $idsPeople  = $request->get('idsPeople');
         $idTable    = $request->get('idTable');
 
         $guestTableService->assignGuestsToTables($idsPeople, $idTable);
+
+        return new JsonResponse(['response' => true]);
+    }
+
+    /**
+     * @Route("/deassignGuestToTable", name="desassign_guest")
+     */
+    public function deassignGuestToTable(Request $request, GuestTableService $guestTableService)
+    {
+        $idPeople   = $request->get('idPeople');
+        $idTable    = $request->get('idTable');
+
+        $guestTableService->deassignGuestToTable($idPeople, $idTable);
+
+        return new JsonResponse(['response' => true]);
+    }
+
+    /**
+     * @Route("/removeAllGuestsFromTable", name="remove_all_guest")
+     */
+    public function removeAllGuestsFromTable(Request $request, GuestTableService $guestTableService)
+    {
+        $idTable = $request->get('idTable');
+
+        $guestTableService->removeAllGuestsFromTable($idTable);
 
         return new JsonResponse(['response' => true]);
     }

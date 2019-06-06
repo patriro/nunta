@@ -127,4 +127,17 @@ class Table
 
         return $this;
     }
+
+    public function removeAllGuest(): self
+    {
+        foreach ($this->guests as $guest) {
+            $this->guests->removeElement($guest);
+            // set the owning side to null (unless already changed)
+            if ($guest->getWeddingTable() === $this) {
+                $guest->setWeddingTable(null);
+            }
+        }
+
+        return $this;
+    }
 }

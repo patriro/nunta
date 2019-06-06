@@ -50,6 +50,38 @@ function reloadGuests(e) {
     });
 };
 
+function removeGuestFromTable(idPeople, idTable) {
+    $.ajax({
+        type: "DELETE",
+        url: '/nuntadmin/deassignGuestToTable',
+        data: {idPeople, idTable},
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(errorThrown);
+        },
+        success: function(response) {
+           if (response.response === true) {
+               reloadingPage();
+           }
+        }
+    });
+};
+
+function removeAllGuestsFromTable(idTable) {
+    $.ajax({
+        type: "DELETE",
+        url: '/nuntadmin/removeAllGuestsFromTable',
+        data: {idTable},
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(errorThrown);
+        },
+        success: function(response) {
+           if (response.response === true) {
+               reloadingPage();
+           }
+        }
+    });
+};
+
 function reloadingPage() {
     document.location.reload(true);
 };

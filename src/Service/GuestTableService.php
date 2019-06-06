@@ -41,10 +41,31 @@ class GuestTableService
 
     public function assignGuestsToTables($idsPeople, $idTable)
     {
-        $table = $this->tableRepo->findOneById($idTable);
         $guests = $this->guestRepo->findById($idsPeople);
+        $table = $this->tableRepo->findOneById($idTable);
 
         $table->addGuests($guests);
+
+        $this->em->persist($table);
+        $this->em->flush();
+    }
+
+    public function deassignGuestToTable($idPeople, $idTable)
+    {
+        $guest = $this->guestRepo->findOneById($idPeople);
+        $table = $this->tableRepo->findOneById($idTable);
+
+        $table->removeGuest($guest);
+
+        $this->em->persist($table);
+        $this->em->flush();
+    }
+
+    public function removeAllGuestsFromTable($idTable)
+    {
+        $table = $this->tableRepo->findOneById($idTable);
+
+        $table->removeAllGuest();
 
         $this->em->persist($table);
         $this->em->flush();
