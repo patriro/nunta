@@ -1,20 +1,35 @@
 $(document).ready(function(){
     var elems           = document.querySelectorAll('select');
     var elemsTabs       = document.querySelectorAll('.tabs');
-    var instance        = M.FormSelect.init(elems, {});
+    var instances       = M.FormSelect.init(elems, {});
 
     if (elemsTabs[0].childElementCount > 0) {
         var instanceTabs    = M.Tabs.init(elemsTabs, {});
     }
 
 
-    $('#selectPeople').on('click', function(){
-        console.log(instance.getSelectedValues());
-    });
+    $('button').on('click', function(){
+        var listPeoples = instances[0];
+        var listTableVal = $('select#listTable').val();
 
-    $("#listPeople").on('change', function() {
-        console.log(instance.getSelectedValues());
-        console.log($("#listPeople option:selected").text());
+        if (listPeoples.getSelectedValues().length > 0 && listTableVal != null) {
+
+            var idsPeople   = listPeoples.getSelectedValues();
+            var idTable     = listTableVal;
+            $.ajax({
+                type: "POST",
+                url: '/nuntadmin/assignGuestsToTables',
+                data: {idsPeople, idTable},
+                error: function(jqXHR, textStatus, errorThrown) {
+                   console.log(errorThrown);
+                },
+                success: function(response) {
+                   if (response.response === true) {
+                       reloadingPage();
+                   }
+                }
+            });
+        }
     });
 
 });

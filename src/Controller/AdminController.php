@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Table;
 use App\Repository\GuestRepository;
 use App\Repository\TableRepository;
 use App\Service\GoogleSheetsService;
 use App\Service\GuestTableService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,6 +42,19 @@ class AdminController extends AbstractController
         $delete = $request->get('delete', false);
 
         $gss->saveAllGuestsFromGoogle($delete);
+
+        return new JsonResponse(['response' => true]);
+    }
+
+    /**
+     * @Route("/assignGuestsToTables", name="assign_guests")
+     */
+    public function assignGuestsList(Request $request, GuestTableService $guestTableService)
+    {
+        $idsPeople  = $request->get('idsPeople');
+        $idTable    = $request->get('idTable');
+
+        $guestTableService->assignGuestsToTables($idsPeople, $idTable);
 
         return new JsonResponse(['response' => true]);
     }

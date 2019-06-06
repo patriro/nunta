@@ -11,10 +11,14 @@ use App\Repository\TableRepository;
 class GuestTableService
 {
     private $guestRepo;
+    private $tableRepo;
+    private $em;
 
-    public function __construct(GuestRepository $guestRepo)
+    public function __construct(GuestRepository $guestRepo, TableRepository $tableRepo, EntityManagerInterface $em)
     {
         $this->guestRepo = $guestRepo;
+        $this->tableRepo = $tableRepo;
+        $this->em = $em;
     }
 
     public function getTablesWithGuests()
@@ -33,6 +37,17 @@ class GuestTableService
         }
 
         return $formatedGuestTable;
+    }
+
+    public function assignGuestsToTables($idsPeople, $idTable)
+    {
+        $table = $this->tableRepo->findOneById($idTable);
+        $guests = $this->guestRepo->findById($idsPeople);
+
+        $table->addGuests($guests);
+
+        $this->em->persist($table);
+        $this->em->flush();
     }
 }
 

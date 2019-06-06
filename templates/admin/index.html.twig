@@ -27,23 +27,28 @@
 
 <div class="row">
    <div class="input-field col s6 m4 l4 xl4 offset-xl2 offset-l2 offset-m2">
-       <select searchable='Lista de invitati' id="listPeople" multiple>
+       <select searchable='Lista de invitati' id="listPeoples" multiple>
             {% for guest in guests %}
                 <option value="{{ guest.id }}">{{ guest.lastName }} {{ guest.firstName }}</option>
             {% endfor %}
        </select>
-       <button id="selectPeople">select</button>
     </div>
 
    <div class="input-field col s6 m4 l4 xl4">
-       <select searchable='Lista de mese' id="listTables">
+       <select searchable='Lista de mese' id="listTable">
            <option value="" disabled selected>Alege Masa</option>
             {% for table in tables %}
                 <option value="{{ table.id }}">Masa n° : {{ table.number }} (cu {{ table.guests|length }} persoane)</option>
             {% endfor %}
        </select>
-       <button id="selectTable">select</button>
     </div>
+
+</div>
+
+<div class="row rowAdmin center">
+    <button class="btn waves-effect waves-light center-align" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+    </button>
 </div>
 
 <div class="row container">
