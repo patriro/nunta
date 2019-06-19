@@ -108,6 +108,6 @@ class Guest
 
     public function hasTable(): ?bool
     {
-        return is_null($this->weddingTable);
+        return !is_null($this->weddingTable);
     }
 }
