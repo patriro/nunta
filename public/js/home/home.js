@@ -1,13 +1,14 @@
 $(document).ready(function(){
     var textInput = document.getElementById('search');
     var timeout = null;
-    var elems = document.querySelector('.autocomplete');
+    var elem = document.querySelector('.autocomplete');
+    var instance = null;
 
-    M.AutoInit();
+    var peopleResponse = [];
 
+    M.AutoInit(); // ????? Juste pour l'icone ?
     textInput.onkeyup = function (e) {
         var value = textInput.value;
-        var instance;
         if (value.length > 2) {
             clearTimeout(timeout);
 
@@ -19,22 +20,22 @@ $(document).ready(function(){
                     data: 'q=' + value,
                     timeout: 5000,
                     beforeSend: function() {
-                       $('input.autocomplete').autocomplete('');
+                        instance = M.Autocomplete.init(elem, {});
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                        console.log(errorThrown);
                     },
                     success: function(htmlResponse) {
-                       var datas = {};
+                        peopleResponse = [];
+                        var datas = {};
 
-                       for (var i = 0; i < htmlResponse.results.length; i++) {
-                           datas[htmlResponse.results[i].lastName + ' ' + htmlResponse.results[i].firstName] = '';
-                       }
+                        for (var i = 0; i < htmlResponse.results.length; i++) {
+                            datas[htmlResponse.results[i].lastName + ' ' + htmlResponse.results[i].firstName] = '';
+                            peopleResponse.push(htmlResponse.results[i]);
+                        }
 
-                       instance = M.Autocomplete.getInstance(elems);
-
-                       instance.updateData(datas);
-                       instance.open();
+                        instance.updateData(datas);
+                        instance.open();
                    }
                });
 
@@ -42,4 +43,33 @@ $(document).ready(function(){
         }
     };
 
+    $('#search').on('change', function(ele) {
+        var valueOfInput = ele.currentTarget.value
+
+        for (var i = 0; i < peopleResponse.length; i++) {
+            var formatedPeopleName = peopleResponse[i].lastName + ' ' + peopleResponse[i].firstName;
+            if (valueOfInput === formatedPeopleName) {
+                getPeopleInfo(peopleResponse[i].id);
+            }
+        }
+    });
+
+    function getPeopleInfo(id) {
+
+        $.ajax({
+            type: "GET",
+            url: '/peoplePlaces',
+            data: 'id=' + id,
+            beforeSend: function() {
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+               console.log(errorThrown);
+            },
+            success: function(response) {
+                console.log(response);
+           }
+       });
+
+    }
 });
+
