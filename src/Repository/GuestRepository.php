@@ -42,6 +42,8 @@ class GuestRepository extends ServiceEntityRepository
             $guestsDB = $qb->andWhere('g.lastName LIKE :val')
             ->orWhere('g.firstName LIKE :val')
             ->setParameter('val', '%' . $value . '%')
+            ->andWhere('g.presence = true')
+            ->join('g.weddingTable', 'w', 'WITH', $qb->expr()->eq('g.weddingTable', 'w.id'))
             ->orderBy('g.lastName', 'ASC')
             ->getQuery()
             ->getResult();
