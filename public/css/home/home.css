@@ -1,17 +1,30 @@
-#containerWedding {
+#defaultWedding {
     height: 100%;
 }
 
-#containerWedding .row {
+#defaultWedding .row {
     height: 90%;
 }
 
-#containerWedding .row #weddingRoom {
+#defaultWedding .row #weddingRoom {
     height: 100%;
 }
 
-#containerWedding .row #weddingRoom canvas{
+#defaultWedding .row #weddingRoom canvas{
     width: 100%;
+    height: 100%;
+}
+
+#searchCompleted {
+    display: none;
+    height: 100%;
+}
+
+#searchCompleted .row {
+    height: 90%;
+}
+
+#searchCompleted .row #weddingRoom {
     height: 100%;
 }
 

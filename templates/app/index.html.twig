@@ -5,15 +5,26 @@
 {% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/home/home.css') }}">{% endblock %}
 {% block body %}
      {% include 'includes/header.html.twig' %}
-     <h4 class="center">Bine ati venit la nunta noastra</h4>
 
-    <div class="container" id="containerWedding">
+    <div class="container" id="defaultWedding">
+        <h4 class="center">Bine ati venit la nunta noastra</h4>
         <div class="row">
             <div class="col l3 m2 s12">
                 <h2>Lista de mese</h2>
             </div>
             <div class="col l9 m10 s12" id="weddingRoom">
                 <canvas style="border:black 1px solid;"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="searchCompleted">
+        <h4 class="center">Bine ati venit <span class="welcomeTo"></span></h4>
+        <div class="row">
+            <h5>Sunteti la masa N°<span class="tableNr"></span></h5>
+            <div class="col l4 m2 s12">
+                <h6>Impreuna cu :</h6>
+                <div class="collection tableWith"></div>
             </div>
         </div>
     </div>

@@ -67,6 +67,32 @@ $(document).ready(function(){
             },
             success: function(response) {
                 console.log(response);
+                var name = response.personInfo.firstName + ' ' + response.personInfo.lastName;
+                var tableNr = response.tableInfo.id;
+                var guests = response.tableInfo.guests;
+                var appendGuest = '';
+
+                for (var i = 0; i < guests.length; i++) {
+                    var nameGuestInTable = guests[i].firstName + ' ' + guests[i].lastName;
+                    var actif = '';
+
+                    if (name === nameGuestInTable) {
+                        actif = 'active';
+                    }
+                    appendGuest += "<a class='collection-item " + actif + "'>" + nameGuestInTable + "</a>";
+                }
+
+                console.log(appendGuest);
+
+                $('#defaultWedding').hide();
+                $('.welcomeTo').empty();
+                $('.tableNr').empty();
+                $('.tableWith').empty();
+
+                $('#searchCompleted').fadeIn(300);
+                $('.welcomeTo').append(name);
+                $('.tableNr').append(tableNr);
+                $('.tableWith').append(appendGuest);
            }
        });
 
