@@ -77,9 +77,9 @@ $(document).ready(function(){
                     var actif = '';
 
                     if (name === nameGuestInTable) {
-                        actif = 'active';
+                        actif = 'activePeople';
                     }
-                    appendGuest += "<a class='collection-item " + actif + "'>" + nameGuestInTable + "</a>";
+                    appendGuest += "<li class='collection-item " + actif + "'>" + nameGuestInTable + "</li>";
                 }
 
                 console.log(appendGuest);

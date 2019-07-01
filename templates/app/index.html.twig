@@ -7,13 +7,10 @@
      {% include 'includes/header.html.twig' %}
 
     <div class="container" id="defaultWedding">
-        <h4 class="center">Bine ati venit la nunta noastra</h4>
         <div class="row">
-            <div class="col l3 m2 s12">
-                <h2>Lista de mese</h2>
-            </div>
-            <div class="col l9 m10 s12" id="weddingRoom">
-                <canvas style="border:black 1px solid;"></canvas>
+            <div class="col l12 m12 s12 center-align" id="weddingRoom">
+                Patrice & Ana-Maria</br>
+                3 August 2019
             </div>
         </div>
     </div>
@@ -21,14 +18,14 @@
     <div class="container" id="searchCompleted">
         <h4 class="center">Bine ati venit <span class="welcomeTo"></span></h4>
         <div class="row">
-            <h5>Sunteti la masa N°<span class="tableNr"></span></h5>
-            <div class="col l4 m2 s12">
-                <h6>Impreuna cu :</h6>
-                <div class="collection tableWith"></div>
+            <div class="col l5 m4 s12">
+                <h5 class="tableNumber">Masa N° <span class="tableNr"></span> :</h5>
+            </div>
+            <div id="tablesNames" class="col l7 m8 s12">
+                <ul class="collection tableWith"></ul>
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascripts %}

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Allura;
+    src: url("../../fonts/Allura-Regular.otf") format("opentype");
+}
+
 #defaultWedding {
     height: 100%;
 }
@@ -10,14 +15,30 @@
     height: 100%;
 }
 
-#defaultWedding .row #weddingRoom canvas{
+#defaultWedding .row #weddingRoom{
     width: 100%;
     height: 100%;
+    font-family: Allura;
+    font-size: 6vw;
+    color: #9575cd;
+    text-decoration: #9575cd underline !important;
 }
 
 #searchCompleted {
     display: none;
     height: 100%;
+}
+
+#searchCompleted h4{
+    font-family: Allura;
+    font-size: 5vw;
+    color: #9575cd;
+}
+
+#searchCompleted .tableNumber{
+    font-family: Allura;
+    font-size: 5vw;
+    color: #9575cd;
 }
 
 #searchCompleted .row {
@@ -28,3 +49,30 @@
     height: 100%;
 }
 
+#searchCompleted .tableWith {
+    border: none !important;
+}
+
+#searchCompleted #tablesNames {
+    margin-top: 10px;
+}
+
+#searchCompleted .tableWith .activePeople, .welcomeTo{
+    color: #311b92;
+    text-decoration: #311b92 dotted underline !important;
+}
+
+#searchCompleted .tableWith li {
+    border-bottom: none !important;
+    font-family: Allura;
+    font-size: 3vw;
+    color: #9575cd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#search::placeholder {
+    font-family: Allura;
+    font-size: 5vw;
+    color: #9575cd;
+}
