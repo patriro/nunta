@@ -118,4 +118,39 @@ class GuestRepository extends ServiceEntityRepository
 
         return $return;
     }
+
+    public function getAllInfosGuests()
+    {
+        // select g.last_name, g.first_name, g.wedding_table_id from guest as g where g.wedding_table_id is not null order by g.wedding_table_id;
+        $qb = $this->createQueryBuilder('g');
+
+        $allGuests = $qb
+            ->select('count(g.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $qb = $this->createQueryBuilder('g');
+
+        $presenceGuests = $qb
+            ->select('count(g)')
+            ->where('g.presence = TRUE')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $qb = $this->createQueryBuilder('g');
+
+        $placedGuests = $qb
+            ->select('count(g)')
+            ->join('g.weddingTable', 'w', 'WITH', $qb->expr()->eq('g.weddingTable', 'w.id'))
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $counts = [
+            'allGuests' => $allGuests,
+            'presenceGuests' => $presenceGuests,
+            'placedGuests' => $placedGuests,
+        ];
+
+        return $counts;
+    }
 }

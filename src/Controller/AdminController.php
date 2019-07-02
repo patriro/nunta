@@ -26,11 +26,13 @@ class AdminController extends AbstractController
         $allGuests = $guestRepo->findby(['weddingTable' => null]);
         $allTables = $tableRepo->findAll();
         $tablesWithGuests = $guestTableService->getTablesWithGuests();
+        $counts = $guestRepo->getAllInfosGuests();
 
         return $this->render('admin/index.html.twig', [
             'guests' => $allGuests,
             'tables' => $allTables,
             'tablesWithGuests' => $tablesWithGuests,
+            'counts' => $counts,
         ]);
     }
 

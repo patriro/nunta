@@ -8,6 +8,14 @@
     {% include 'includes/headerAdmin.html.twig' %}
 
 <div class="row rowAdmin center">
+    <div class="left">
+        <ul class="collection">
+            <li class="collection-item">Invitati : {{ counts['allGuests'] }}</li>
+            <li class="collection-item">Prezenti : {{ counts['presenceGuests'] }}</li>
+            <li class="collection-item">Asezati : {{ counts['placedGuests'] }}</li>
+        </ul>
+    </div>
+
     <a class="waves-effect btn-small" onclick="reloadGuests(false)">
         <i class="material-icons left">autorenew</i>
         Actualizeaza lista !
@@ -19,10 +27,6 @@
         Sterge si actualizeaza lista !
         <i class="material-icons right">autorenew</i>
     </a>
-</div>
-
-<div class="row container">
-    <hr class="hrAdmin center">
 </div>
 
 <div class="row">
@@ -49,10 +53,6 @@
     <button class="btn waves-effect waves-light center-align" type="submit" name="action">Salveaza
         <i class="material-icons right">send</i>
     </button>
-</div>
-
-<div class="row container">
-    <hr class="hrAdmin center">
 </div>
 
 <div class="row">
