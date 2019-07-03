@@ -26,6 +26,32 @@ html, body {
     line-height: 40px;
 }
 
+#header #closeIcon {
+    font-size: 50px;
+    line-height: 40px;
+}
+
 #header #search:focus + label i, #header #search:focus ~ .material-icons {
     color: #b39ddb !important;
 }
+
+@media only screen and (max-width: 768px) {
+    #header {
+        height: 100px;
+    }
+
+    #header #search::placeholder{
+        font-size: 42px;
+    }
+
+    #header #searchIcon {
+        font-size: 50px;
+        line-height: 75px;
+    }
+
+    #header #closeIcon {
+        font-size: 50px;
+        line-height: 100px;
+    }
+}
+
