@@ -3,25 +3,44 @@
     src: url("../../fonts/Allura-Regular.otf") format("opentype");
 }
 
+@font-face {
+    font-family: Angelique;
+    src: url("../../fonts/Angelique.otf") format("opentype");
+}
+
+@font-face {
+    font-family: austina;
+    src: url("../../fonts/austina.otf") format("opentype");
+}
+
 #defaultWedding {
     height: 100%;
-}
-
-#defaultWedding .row {
-    height: 90%;
-}
-
-#defaultWedding .row #weddingRoom {
-    height: 100%;
+    color: #9575cd;
+    font-family: austina;
 }
 
 #defaultWedding .row #weddingRoom{
-    width: 100%;
-    height: 100%;
-    font-family: Allura;
-    font-size: 50px;
-    color: #9575cd;
     text-decoration: #9575cd underline !important;
+    font-size: 50px;
+}
+
+#defaultWedding .row #weddingRoom .headerWedding{
+    font-family: austina;
+    margin: 15px;
+}
+
+#defaultWedding .row #weddingInfos p{
+    font-size: 35px;
+    line-height: 30px;
+}
+
+#defaultWedding .row #weddingInfos p .place{
+    font-family: Angelique;
+    font-size: 40px;
+}
+
+#defaultWedding .row #weddingInfos .locationIcon{
+    color: #039be5;
 }
 
 #searchCompleted {
@@ -45,10 +64,6 @@
     height: 90%;
 }
 
-#searchCompleted .row #weddingRoom {
-    height: 100%;
-}
-
 #searchCompleted .tableWith {
     border: none !important;
 }
@@ -64,8 +79,8 @@
 
 #searchCompleted .tableWith li {
     border-bottom: none !important;
-    font-family: Allura;
-    font-size: 3vw;
+    font-family: Angelique;
+    font-size: 50px;
     color: #9575cd;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -77,8 +92,35 @@
     color: #9575cd;
 }
 
+/********* Search Bar **********/
+.dropdown-content li>a, .dropdown-content li>span {
+  color: #9575cd!important;
+}
+.autocomplete-content li .highlight {
+  color: #311b92 !important;
+  text-decoration: #311b92 underline;
+}
+
 @media only screen and (max-width: 768px) {
-    #defaultWedding .row #weddingRoom{
+    #defaultWedding{
         font-size: 35px;
     }
+
+    #defaultWedding .row #weddingRoom .headerWedding{
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    #searchCompleted .welcomeToHeader {
+        font-size: 30px;
+    }
+
+    #searchCompleted .tableNumber {
+        font-size: 35px;
+    }
+
+    #tablesNames .tableWith li {
+        font-size: 50px;
+    }
+
 }
