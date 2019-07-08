@@ -92,6 +92,11 @@
     color: #9575cd;
 }
 
+#search:focus {
+    padding: 0;
+    width: 100%;
+}
+
 /********* Search Bar **********/
 .dropdown-content li>a, .dropdown-content li>span {
   color: #9575cd!important;
