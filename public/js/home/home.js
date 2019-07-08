@@ -54,6 +54,10 @@ $(document).ready(function(){
         }
     });
 
+    $('.comeBack').on('click', function() {
+        cleanSearchedPeople();
+    });
+
     function getPeopleInfo(id) {
 
         $.ajax({
@@ -96,6 +100,11 @@ $(document).ready(function(){
            }
        });
 
+    }
+
+    function cleanSearchedPeople() {
+        $('#searchCompleted').fadeOut(300);
+        $('#defaultWedding').show();
     }
 });
 
