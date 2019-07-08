@@ -70,7 +70,6 @@ $(document).ready(function(){
                console.log(errorThrown);
             },
             success: function(response) {
-                console.log(response);
                 var name = response.personInfo.firstName + ' ' + response.personInfo.lastName;
                 var tableNr = response.tableInfo.id;
                 var guests = response.tableInfo.guests;
@@ -85,8 +84,6 @@ $(document).ready(function(){
                     }
                     appendGuest += "<li class='collection-item " + actif + "'>" + nameGuestInTable + "</li>";
                 }
-
-                console.log(appendGuest);
 
                 $('#defaultWedding').hide();
                 $('.welcomeTo').empty();
@@ -103,7 +100,7 @@ $(document).ready(function(){
     }
 
     function cleanSearchedPeople() {
-        $('#searchCompleted').fadeOut(300);
+        $('#searchCompleted').hide();
         $('#defaultWedding').show();
     }
 });
