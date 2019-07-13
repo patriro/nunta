@@ -39,17 +39,17 @@ class GuestRepository extends ServiceEntityRepository
         $guests = [];
 
         foreach ($namesToSearch as $key => $value) {
-            $guestsDB = $qb->andWhere('g.lastName LIKE :val')
+            $qb->andWhere('g.lastName LIKE :val')
             ->orWhere('g.firstName LIKE :val')
-            ->setParameter('val', '%' . $value . '%')
-            ->andWhere('g.presence = true')
-            ->join('g.weddingTable', 'w', 'WITH', $qb->expr()->eq('g.weddingTable', 'w.id'))
-            ->orderBy('g.lastName', 'ASC')
-            ->getQuery()
-            ->getResult();
-
-            $guests = array_merge($guests, $guestsDB);
+            ->setParameter('val', '%' . $value . '%');
         }
+
+        $guests = $qb->andWhere('g.presence = true')
+        ->join('g.weddingTable', 'w', 'WITH', $qb->expr()->eq('g.weddingTable', 'w.id'))
+        ->orderBy('g.lastName', 'ASC')
+        ->getQuery()
+        ->getResult();
+
 
         if (empty($guests)) {
             return [];
