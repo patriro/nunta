@@ -58,6 +58,10 @@ $(document).ready(function(){
         cleanSearchedPeople();
     });
 
+    $('#closeIcon').on('click', function() {
+        $('#search').val('');
+    });
+
     function getPeopleInfo(id) {
 
         $.ajax({
