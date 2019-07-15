@@ -67,13 +67,13 @@
 }
 
 #searchCompleted h4{
-    font-family: Allura;
+    font-family: Aulyars;
     font-size: 5vw;
     color: #9575cd;
 }
 
 #searchCompleted .tableNumber{
-    font-family: Allura;
+    font-family: Aulyars;
     font-size: 5vw;
     color: #9575cd;
 }
@@ -84,6 +84,7 @@
 
 #searchCompleted .tableWith {
     border: none !important;
+    font-family: Aulyars;
 }
 
 #searchCompleted #tablesNames {
@@ -97,7 +98,7 @@
 
 #searchCompleted .tableWith li {
     border-bottom: none !important;
-    font-family: Angelique;
+    font-family: Allura;
     font-size: 50px;
     color: #9575cd;
     padding-top: 10px;
