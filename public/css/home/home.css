@@ -9,23 +9,21 @@
 }
 
 @font-face {
-    font-family: austina;
-    src: url("../../fonts/austina.otf") format("opentype");
+    font-family: Aulyars;
+    src: url("../../fonts/Aulyars Italic.otf") format("opentype");
 }
 
 #defaultWedding {
     height: 100%;
     color: #9575cd;
-    font-family: austina;
 }
 
 #defaultWedding .row #weddingRoom{
-    text-decoration: #9575cd underline !important;
     font-size: 50px;
 }
 
 #defaultWedding .row #weddingRoom .headerWedding{
-    font-family: austina;
+    font-family: Aulyars;
     margin: 15px;
 }
 
@@ -34,13 +32,33 @@
     line-height: 30px;
 }
 
-#defaultWedding .row #weddingInfos p .place{
-    font-family: Angelique;
+#defaultWedding .row #weddingInfos p .icons{
     font-size: 40px;
 }
 
-#defaultWedding .row #weddingInfos .locationIcon{
+#defaultWedding .row #weddingInfos p .cross{
+    font-size: 60px;
+}
+
+#defaultWedding .row #weddingInfos p .hours{
+    font-size: 35px;
+    font-family: Aulyars;
+}
+
+
+#defaultWedding .row #weddingInfos p .place{
+    font-size: 40px;
+    font-family: Aulyars;
+}
+
+#defaultWedding .row #weddingInfos .locationPlace{
+    font-size: 30px;
+}
+
+#defaultWedding .row #weddingInfos .locationPlace .locationIcon{
     color: #039be5;
+    cursor: pointer;
+    font-size: 35px;
 }
 
 #searchCompleted {
@@ -112,8 +130,8 @@
     }
 
     #defaultWedding .row #weddingRoom .headerWedding{
-        font-size: 40px;
-        line-height: 40px;
+        font-size: 35px;
+        line-height: 35px;
     }
 
     #searchCompleted .welcomeToHeader {
