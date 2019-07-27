@@ -23,7 +23,11 @@ class AdminController extends AbstractController
      */
     public function index(GuestRepository $guestRepo, TableRepository $tableRepo, GuestTableService $guestTableService)
     {
-        $allGuests = $guestRepo->findby(['weddingTable' => null]);
+        $allGuests = $guestRepo->findby([
+            'weddingTable' => null,
+            'presence' => true
+        ]);
+
         $allTables = $tableRepo->findAll();
         $tablesWithGuests = $guestTableService->getTablesWithGuests();
         $counts = $guestRepo->getAllInfosGuests();
