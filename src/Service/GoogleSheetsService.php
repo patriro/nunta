@@ -40,7 +40,7 @@ class GoogleSheetsService
         return new Google_Service_Sheets($client);
     }
 
-    public function saveAllGuestsFromGoogle($removingBefore = false)
+    public function saveAllGuestsFromGoogle($removingBefore = 'false')
     {
         try {
             $googleSheetsService = $this->initalizeGoogleService();
@@ -48,7 +48,7 @@ class GoogleSheetsService
             throw new Exception("Google Sheet API isn\'t available");
         }
 
-        if ($removingBefore == true) {
+        if ($removingBefore === 'true') {
             $this->guestRepo->removeAll();
         }
 

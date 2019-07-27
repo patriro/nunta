@@ -45,7 +45,7 @@ class AdminController extends AbstractController
      */
     public function updateGuestsList(Request $request, GoogleSheetsService $gss)
     {
-        $delete = $request->get('delete', false);
+        $delete = $request->get('delete', 'false');
 
         $gss->saveAllGuestsFromGoogle($delete);
 
