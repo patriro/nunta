@@ -62,11 +62,12 @@ class GoogleSheetsService
         $allHeaders = $this->getHeadersAndSheets();
         $allDatas = [];
 
-        foreach ($allHeaders as $sheet) {
+        foreach ($allHeaders as $key => $sheet) {
             $valueRange     = $googleSheetsService->spreadsheets_values->get(self::SHEET_ID, $sheet);
             $datas          = $this->getDatasWihtoutLinesSpaces($valueRange->getValues());
             $datas          = $this->ignoreAllQuestionMarkAndNoCommingPeople($datas);
             $datas          = $this->ignoreAllQuestionMarkAndNoCommingPeople($datas);
+            $datas          = $this->addingRefSheetId($key, $datas);
             $allDatas = array_merge($allDatas, $datas);
         }
 
@@ -82,16 +83,16 @@ class GoogleSheetsService
         // 4 Présence
 
         return [
-            'burdaSheetsRange'          => 'Familia Burda!B5:E',
-            'oprisiuSheetsRange'        => 'Familia Oprisiu!B5:E',
-            'burdaFriendsSheetsRange'   => 'Prietenii - familistii Burda!B5:E',
-            'olariSheetsRange'          => 'Familia Olari!B5:E',
-            'purtanSheetsRange'         => 'Familia Purtan!B5:E',
-            'closeOlariSheetsRange'     => 'Familia apropiata Olari!B5:E',
-            'olariFriendsSheetsRange'   => 'Prietenii - familistii Olari!B5:E',
-            'comitetSheetsRange'        => 'Comitet!B5:E',
-            'frenchSheetsRange'         => 'Francezi!B5:E',
-            'teensSheetsRange'          => 'Tinerii!B5:E',
+            'BSR'   => 'Familia Burda!A5:E',
+            'OSR'   => 'Familia Oprisiu!A5:E',
+            'BFSR'  => 'Prietenii - familistii Burda!A5:E',
+            'OLSR'   => 'Familia Olari!A5:E',
+            'PSR'   => 'Familia Purtan!A5:E',
+            'COSR'  => 'Familia apropiata Olari!A5:E',
+            'OFSR'  => 'Prietenii - familistii Olari!A5:E',
+            'CSR'   => 'Comitet!A5:E',
+            'FSR'   => 'Francezi!A5:E',
+            'TSR'   => 'Tinerii!A5:E',
         ];
     }
 
@@ -120,6 +121,17 @@ class GoogleSheetsService
         return $datas;
     }
 
+    private function addingRefSheetId($refSheetId, $datas)
+    {
+        foreach ($datas as $key => $value) {
+            $formatedRefSheetId = $refSheetId . $datas[$key][0];
+            $datas[$key][0] = $formatedRefSheetId;
+        }
+
+        dump($datas);
+        return $datas;
+    }
+
     private function persistDatasInBDD($datas)
     {
         $allGuests = $this->guestRepo->findAll();
@@ -142,7 +154,6 @@ class GoogleSheetsService
 
         foreach ($allGuests as $guest) {
             if ($this->checkIfGuestFromServerIsInBDD($guestFromServer, $guest)) {
-
                 $this->saveGuest($guest, $guestFromServer);
                 return;
             }
@@ -153,7 +164,7 @@ class GoogleSheetsService
 
     private function checkIfGuestFromServerIsInBDD($guestFromServer, $guest)
     {
-        if ($guest->getLastName() == $guestFromServer[0] && $guest->getFirstName() == $guestFromServer[1]) {
+        if ($guest->getRefSheetId() == $guestFromServer[0] && $guest->getLastName() == $guestFromServer[1] && $guest->getFirstName() == $guestFromServer[2]) {
             return true;
         }
 
@@ -168,10 +179,11 @@ class GoogleSheetsService
 
     private function saveGuest(Guest $guest, $guestFromServer)
     {
-        $guest->setLastName($guestFromServer[0]);
-        $guest->setFirstName($guestFromServer[1]);
-        $guest->setChildUnder7($this->returnTrueOrFalse($guestFromServer[2]));
-        $guest->setPresence($this->returnTrueOrFalse($guestFromServer[3]));
+        $guest->setRefSheetId($guestFromServer[0]);
+        $guest->setLastName($guestFromServer[1]);
+        $guest->setFirstName($guestFromServer[2]);
+        $guest->setChildUnder7($this->returnTrueOrFalse($guestFromServer[3]));
+        $guest->setPresence($this->returnTrueOrFalse($guestFromServer[4]));
         $this->em->persist($guest);
     }
 

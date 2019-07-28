@@ -17,6 +17,11 @@ class Guest
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $refSheetId;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $lastName;
@@ -44,6 +49,18 @@ class Guest
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setRefSheetId(string $refSheetId): self
+    {
+        $this->refSheetId = $refSheetId;
+
+        return $this;
+    }
+
+    public function getRefSheetId(): ?string
+    {
+        return $this->refSheetId;
     }
 
     public function getLastName(): ?string
