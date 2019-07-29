@@ -128,7 +128,6 @@ class GoogleSheetsService
             $datas[$key][0] = $formatedRefSheetId;
         }
 
-        dump($datas);
         return $datas;
     }
 
