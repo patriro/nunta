@@ -74,8 +74,9 @@
             <ul id="m{{ key }}" class="collection">
             {% for tableWithGuest in tableWithGuests %}
                 <li href="#!" class="collection-item">
-                    {{ tableWithGuest.firstName }}
+                    {{ loop.index }})
                     {{ tableWithGuest.lastName }}
+                    {{ tableWithGuest.firstName }}
                     <span class="right cursorPointer">
                         <i class="material-icons" onclick="removeGuestFromTable({{ tableWithGuest.idGuest }}, {{ tableWithGuest.idTable }})">delete</i>
                     </span>
