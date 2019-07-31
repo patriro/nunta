@@ -98,11 +98,19 @@
 
 #searchCompleted .tableWith li {
     border-bottom: none !important;
-    font-family: Allura;
+    font-family: Aulyars;
     font-size: 50px;
     color: #9575cd;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+#searchCompleted .tableWith li:first-child {
+    padding-top: 25px;
+}
+
+#searchCompleted .tableWith li:last-child {
+    padding-bottom: 25px;
 }
 
 #search::placeholder {
