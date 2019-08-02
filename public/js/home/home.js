@@ -78,10 +78,12 @@ $(document).ready(function(){
                 var tableNr = response.tableInfo.id;
                 var guests = response.tableInfo.guests;
                 var appendGuest = '';
+                var numberOfPeople = 0;
 
                 for (var i = 0; i < guests.length; i++) {
                     var nameGuestInTable = guests[i].firstName + ' ' + guests[i].lastName;
                     var actif = '';
+                    numberOfPeople++;
 
                     if (name === nameGuestInTable) {
                         actif = 'activePeople';
@@ -93,11 +95,13 @@ $(document).ready(function(){
                 $('.welcomeTo').empty();
                 $('.tableNr').empty();
                 $('.tableWith').empty();
+                $('.numberHowManyPeople').empty();
 
                 $('#searchCompleted').fadeIn(300);
                 $('.welcomeTo').append(name);
                 $('.tableNr').append(tableNr);
                 $('.tableWith').append(appendGuest);
+                $('.numberHowManyPeople').append(numberOfPeople);
            }
        });
 

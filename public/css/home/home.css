@@ -105,6 +105,12 @@
     padding-bottom: 10px;
 }
 
+#searchCompleted .howManyPeople {
+    font-family: Aulyars;
+    font-size: 40px;
+    color: #9575cd;
+}
+
 #searchCompleted .tableWith li:first-child {
     padding-top: 25px;
 }
